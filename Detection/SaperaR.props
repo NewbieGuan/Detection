@@ -4,7 +4,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IncludePath>D:\Teledyne DALSA\Sapera\Classes\Basic;D:\Teledyne DALSA\Sapera\Classes\Gui;D:\Teledyne DALSA\Sapera\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Teledyne DALSA\Sapera\Lib\Win64;D:\Teledyne DALSA\Sapera\Lib\Win64\VS2013;$(LibraryPath)</LibraryPath>
+    <LibraryPath>D:\Teledyne DALSA\Sapera\Lib\Win64;D:\Teledyne DALSA\Sapera\Lib\Win64\VS2012;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <Link>

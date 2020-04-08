@@ -2,7 +2,7 @@
 
 2.此项目需配置opencv、MPC2810、Sapera LT三个库
 MPC2810库下载：www.leetro.com/down/MPC2810A%20V1.0.17-32bit%20Win7.rar
-Sapera LT库下载：sapera_lt_831_sdk.exe 或者在http://51camera.com.cn/show-25-12-1.html的“软件及例程下载”中下载，这个网址就是此项目相机的选型。
+Sapera LT库下载：sapera_lt_831_sdk.exe 或者在http://51camera.com.cn/show-25-12-1.html的“软件及例程下载”中下载，这个网址就是此项目相机的选型。注意：SapClassGuiD.lib、SapClassGui.lib以及对应的dll要用它里面给的工程重新生成一下，具体操作见文档“Dalsa VS2012编程环境下生成SapClassGui.Lib以及DLL方法.doc”
 
 已经在项目中属性管理器的Debug|x64和Release|x64配置了这几个库的属性表，使用时请以按照自己电脑的环境修改。
 2.1修改方法一：可右击属性页->属性，修改包含目录、库目录和附加依赖项这几个选项。
