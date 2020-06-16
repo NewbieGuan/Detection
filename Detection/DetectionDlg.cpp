@@ -1173,10 +1173,10 @@ void CDetectionDlg::OnMotorMoving()
 			set_conspeed(2, 10 * m_steps_mm);  // 常速运动
 			set_profile(2, speedPlatform / 6, speedPlatform, speedPlatform * 20);  // 快速运动
 
-																				   // 开始时让轴2负向运动43000p
+			// 开始时让轴2负向运动43000p
 			if (i == 0)
 			{
-				fast_pmove(2, -240 * m_steps_mm);
+				//fast_pmove(2, -240 * m_steps_mm); //2020.6.16 取消了开始检测时向前移动一段距离
 				delay_time(2000);
 			}
 

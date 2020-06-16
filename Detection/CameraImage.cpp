@@ -271,6 +271,7 @@ void CCameraImage::TransferData(unsigned char *pData, int nWidth, int nHeight)
 	//	}
 	//}
 
+	//原先不一定每帧都取，现修改成每帧都取，所以gapValue参数没用了
 	if (saveIndex <= sampleCountStrip)
 	{
 		// 保存图像路径
