@@ -136,11 +136,16 @@ void CMotionAdjust::InitParam()
 	m_sSpeedPlatform = "3000";       // 初始化平台运动速度  600 mm/min
 	m_sDistancePlatform = "20";    // 初始化平台运动距离    20 mm
 
+
+	CString strPluse;
+	::GetPrivateProfileString(_T("SaveInfo"), _T("脉冲当量"), strPluse, strPluse.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
+	GetDlgItem(IDC_EDIT_MODIFY_MOTION_PARA_PULSE)->SetWindowText(strPluse);
+	m_steps_mm = _ttoi(strPluse); //1000
+
 	// 电机每转需要的脉冲数   注意换算脉冲当量
 	set_steps_pr(1, 10 * m_steps_mm);     // 轴1   相机
 	set_steps_pr(2, 10 * m_steps_mm);     // 轴2   平台
 
-	m_steps_mm = 1000;
 
 	// /*
 	// -----------------【轴的限位、电平】--------------------

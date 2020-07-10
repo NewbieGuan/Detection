@@ -65,8 +65,8 @@ CDetectionDlg::CDetectionDlg(CWnd* pParent /*=NULL*/)
 	m_sSpeedPlatform = 0;
 	m_sDistancePlatform = 0;
 
-	changeratiodlg = 1.355;
-	heightnew = int(2048 * changeratiodlg);
+	changeratiodlg = 5.378/4;
+	heightnew = 2775; //2048*5.378/4=2775
 
 	m_IsCameraConnected = FALSE;
 
@@ -175,11 +175,11 @@ BOOL CDetectionDlg::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化代码
 
-	// 初始化运动控制卡
-	InitBoard();
-
 	// 获取系统参数
 	GetSystemPara();
+
+	// 初始化运动控制卡
+	InitBoard();
 
 	// 按钮状态设置
 	//GetDlgItem(IDC_BTN_GRAB_TEST)->EnableWindow(0);
@@ -759,52 +759,12 @@ void CDetectionDlg::OnLButtonDown(UINT nFlags, CPoint point)
 // 修改系统参数，获取系统参数
 void CDetectionDlg::GetSystemPara()
 {
-
-	//3.28夜  如果删掉ModifyPara构造函数那一行无效，加这一句
-	//dlgModifyPara.GetIniSystemPara();
-
-
-	//4.1原来
-
 	m_steps_mm = (int)_ttof(dlgModifyPara.m_sPulseEquivalent);
 	m_delayTime = (int)_ttof(dlgModifyPara.m_sDelayTime);
 	m_resolution = (double)_ttof(dlgModifyPara.m_sResolution);
-	m_threshold = (double)_ttof(dlgModifyPara.m_sThreshold);
-	//3.28下午
+	m_threshold = (int)_ttof(dlgModifyPara.m_sThreshold);
 	sampleCountStrip = (int)_ttof(dlgModifyPara.m_sSampleCountStrip);
-
-	//4.10
 	graythreshold = (int)_ttof(dlgModifyPara.m_sGrayThreshold);
-
-
-
-
-	//4.1读取
-	//脉冲当量
-	CString strPluse;
-	::GetPrivateProfileString(_T("SaveInfo"), _T("脉冲当量"), strPluse, strPluse.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	m_steps_mm = (int)_ttof(strPluse);
-
-	// 延迟
-	CString strDelayTime;
-	::GetPrivateProfileString(_T("SaveInfo"), _T("延迟"), strDelayTime, strDelayTime.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	m_delayTime = (double)_ttof(strDelayTime);
-
-	// 分辨率
-	CString strResolution;
-	::GetPrivateProfileString(_T("SaveInfo"), _T("分辨率"), strResolution, strResolution.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	m_resolution = (double)_ttof(strResolution);
-
-	// 最小粒径阈值
-	CString strThreshold;
-	::GetPrivateProfileString(_T("SaveInfo"), _T("最小粒径阈值"), strThreshold, strThreshold.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	m_threshold = (int)_ttof(strThreshold);
-
-	//3.26修改  3.28下午
-	// 每条取样帧数
-	CString strSampleCountStrip;  //3.28夜 改命名
-	::GetPrivateProfileString(_T("SaveInfo"), _T("每条取样帧数"), strSampleCountStrip, strSampleCountStrip.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	sampleCountStrip = (int)_ttof(strSampleCountStrip);
 }
 
 
@@ -1025,7 +985,7 @@ void CDetectionDlg::OnBnClickedBtnStartDetection()
 
 	//3.28下午
 	//3.31修改
-	if ((sampleCountStrip * 2138 * m_resolution) > m_sDistanceCamera * 1000) //2138是随便取了一个比2048略大的值
+	if ((sampleCountStrip * 2138 * m_resolution) > m_sDistanceCamera * m_steps_mm) //2138是随便取了一个比2048略大的值
 	{
 		AfxMessageBox(_T("每条取样帧数太大，需要变小！"));
 		return;
