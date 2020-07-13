@@ -139,7 +139,6 @@ void CMotionAdjust::InitParam()
 
 	CString strPluse;
 	::GetPrivateProfileString(_T("SaveInfo"), _T("脉冲当量"), strPluse, strPluse.GetBuffer(MAX_PATH), MAX_PATH, _T("..\\SystemPara.ini"));
-	GetDlgItem(IDC_EDIT_MODIFY_MOTION_PARA_PULSE)->SetWindowText(strPluse);
 	m_steps_mm = _ttoi(strPluse); //1000
 
 	// 电机每转需要的脉冲数   注意换算脉冲当量
